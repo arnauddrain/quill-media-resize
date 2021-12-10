@@ -1,1 +1,0 @@
-(function(e,t){typeof exports=="object"&&typeof module!="undefined"?t(exports):typeof define=="function"&&define.amd?define(["exports"],t):(e=typeof globalThis!="undefined"?globalThis:e||self,t(e.quillMediaResize={}))})(this,function(e){"use strict";function t(){console.log("Hello !")}e.display=t,Object.defineProperty(e,"__esModule",{value:!0}),e[Symbol.toStringTag]="Module"});

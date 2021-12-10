@@ -1,7 +1,7 @@
 {
   "name": "quill-media-resize",
   "version": "0.0.1",
-  "description": "Quill media resize plugin",
+  "description": "Quill media resize module",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

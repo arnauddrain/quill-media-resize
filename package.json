@@ -1,0 +1,14 @@
+{
+  "name": "quill-media-resize",
+  "version": "0.0.1",
+  "description": "Quill media resize plugin",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

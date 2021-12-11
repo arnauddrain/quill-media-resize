@@ -11,6 +11,10 @@ export default class MediaResize {
   private media?: HTMLImageElement;
   private overlay?: HTMLDivElement;
   private parentNode: HTMLElement;
+  private dragCorner?: HTMLDivElement;
+  private dragStartX: number = 0;
+  private preDragWidth: number = 0;
+  private corners: HTMLDivElement[] = [];
 
   constructor(quill: Quill) {
     this.quill = quill;
@@ -52,8 +56,8 @@ export default class MediaResize {
   };
 
   addCorner = (cursor: string, positions: { [key: string]: string }) => {
-    const box = document.createElement("div");
-    Object.assign(box.style, {
+    const corner = document.createElement("div");
+    Object.assign(corner.style, {
       position: "absolute",
       height: "12px",
       width: "12px",
@@ -63,12 +67,44 @@ export default class MediaResize {
       opacity: "0.80",
       ...positions,
     });
-    box.style.cursor = cursor;
-    box.addEventListener("mousedown", this.handleMousedown, false);
-    this.overlay?.appendChild(box);
+    corner.style.cursor = cursor;
+    corner.addEventListener("mousedown", this.handleMousedown, false);
+    this.overlay?.appendChild(corner);
+    this.corners.push(corner);
   };
 
-  handleMousedown = (event: MouseEvent) => {};
+  handleMousedown = (event: MouseEvent) => {
+    this.dragCorner = event.target as HTMLDivElement;
+    this.dragStartX = event.clientX;
+    this.preDragWidth = this.media?.width || this.media?.naturalWidth || 0;
+    this.setCursor(this.dragCorner.style.cursor);
+    document.addEventListener("mousemove", this.handleDrag, false);
+    document.addEventListener("mouseup", this.handleMouseup, false);
+  };
+
+  handleMouseup = () => {
+    this.setCursor("");
+    document.removeEventListener("mousemove", this.handleDrag);
+    document.removeEventListener("mouseup", this.handleMouseup);
+  };
+
+  handleDrag = (event: MouseEvent) => {
+    if (!this.media) {
+      // image not set yet
+      return;
+    }
+    // update image size
+    const deltaX = event.clientX - this.dragStartX;
+    if (
+      this.dragCorner === this.corners[0] ||
+      this.dragCorner === this.corners[3]
+    ) {
+      this.media.width = Math.round(this.preDragWidth - deltaX);
+    } else {
+      this.media.width = Math.round(this.preDragWidth + deltaX);
+    }
+    this.repositionElements();
+  };
 
   showOverlay = () => {
     this.hideOverlay();
@@ -106,6 +142,14 @@ export default class MediaResize {
       top: `${mediaRect.top - containerRect.top + this.parentNode.scrollTop}px`,
       width: `${mediaRect.width + 2}px`,
       height: `${mediaRect.height + 1}px`,
+    });
+  };
+
+  setCursor = (value: string) => {
+    [document.body, this.media].forEach((el) => {
+      if (el) {
+        el.style.cursor = value;
+      }
     });
   };
 }

@@ -7,6 +7,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "quillMediaResize",
       formats: ["umd"],
+      fileName: () => "quill-media-resize.min.js",
     },
   },
 });

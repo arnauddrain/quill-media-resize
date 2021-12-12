@@ -2,7 +2,7 @@
   "name": "quill-media-resize",
   "version": "0.0.1",
   "description": "Quill media resize module",
-  "main": "dist/quill-media-resize.umd.js",
+  "main": "dist/quill-media-resize.min.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"

@@ -1,6 +1,6 @@
 {
   "name": "quill-media-resize",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Quill media resize module",
   "main": "dist/quill-media-resize.min.js",
   "scripts": {

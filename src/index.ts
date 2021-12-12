@@ -109,6 +109,8 @@ export default class MediaResize {
   showOverlay = () => {
     this.hideOverlay();
     this.quill.setSelection(0, 0);
+    this.setUserSelect("none");
+    document.addEventListener("keyup", this.onKeyUp, true);
     this.overlay = document.createElement("div");
     Object.assign(this.overlay.style, {
       position: "absolute",
@@ -123,6 +125,25 @@ export default class MediaResize {
     if (this.overlay) {
       this.parentNode.removeChild(this.overlay);
       this.overlay = undefined;
+      this.setUserSelect("");
+    }
+  };
+
+  setUserSelect = (value: string) => {
+    ["userSelect", "mozUserSelect", "webkitUserSelect", "msUserSelect"].forEach(
+      (prop) => {
+        this.quill.root.style[<any>prop] = value;
+        document.documentElement.style[<any>prop] = value;
+      }
+    );
+  };
+
+  onKeyUp = (event: KeyboardEvent) => {
+    if (this.media) {
+      if (["delete", "backspace", "delete"].includes(event.key.toLowerCase())) {
+        window?.Quill?.find(this.media).deleteAt(0);
+      }
+      this.hide();
     }
   };
 

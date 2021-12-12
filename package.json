@@ -1,13 +1,26 @@
 {
   "name": "quill-media-resize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Quill media resize module",
   "main": "dist/quill-media-resize.min.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnauddrain/quill-media-resize.git"
+  },
+  "homepage": "https://github.com/arnauddrain/quill-media-resize#readme",
+  "author": "arnauddrain",
+  "keywords": [
+    "quill",
+    "quilljs",
+    "image",
+    "media",
+    "resize",
+    "sizer"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.11.12",

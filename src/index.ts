@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export default class MediaResize {
+export class MediaResize {
   private quill: Quill;
   private media?: HTMLImageElement;
   private overlay?: HTMLDivElement;
@@ -32,7 +32,7 @@ export default class MediaResize {
     if (this.media) {
       this.hide();
     }
-    if (target?.tagName.toUpperCase() === "IMG") {
+    if (target && ["img"].includes(target.tagName.toLowerCase())) {
       this.show(target as HTMLImageElement);
     }
   };

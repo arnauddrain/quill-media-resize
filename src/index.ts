@@ -140,7 +140,10 @@ export class MediaResize {
 
   onKeyUp = (event: KeyboardEvent) => {
     if (this.media) {
-      if (["delete", "backspace", "delete"].includes(event.key.toLowerCase())) {
+      if (
+        typeof window !== "undefined" &&
+        ["delete", "backspace", "delete"].includes(event.key.toLowerCase())
+      ) {
         window?.Quill?.find(this.media).deleteAt(0);
       }
       this.hide();
@@ -175,6 +178,6 @@ export class MediaResize {
   };
 }
 
-if (window?.Quill) {
+if (typeof window !== "undefined" && window?.Quill) {
   window.Quill.register("modules/mediaResize", MediaResize);
 }

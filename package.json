@@ -21,7 +21,6 @@
     "resize",
     "sizer"
   ],
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.11.16",
     "@types/quill": "^1.3.10",

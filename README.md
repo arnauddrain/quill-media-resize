@@ -5,6 +5,8 @@ A module for Quill rich text editor to allow images to be resized.
 This module is very inspired by Ken Snyder's [quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module).
 Only for images for now but aiming to handle videos and other media later.
 
+The changelog is available on the [releases page](https://github.com/arnauddrain/quill-media-resize/releases).
+
 ## How to use
 
 ### Vanilla
